@@ -1,0 +1,12 @@
+
+projects:
+  dev:
+    schemaPath: schema.graphql
+    includes: ["*.graphql"]
+    extensions:
+      endpoints:
+        default: 'http://localhost:8090/graphql' # START THE BACKEND SERVER FIRST!!!
+        # mock: 'http://localhost:9000/'
+
+  
+

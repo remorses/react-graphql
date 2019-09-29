@@ -1,0 +1,32 @@
+on: push
+name: Docker
+jobs:
+  all:
+    name: Node Code Formatter
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '10'
+    - run: npm ci
+    - run: npm build
+    - uses: azure/container-actions/docker-login@master
+      with:
+        # login-server: contoso.azurecr.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Publish Image
+      run: |
+        set -x
+        docker build . -t xmorse/instabotnet-frontend:latest
+        docker push xmorse/instabotnet-frontend:latest
+    - name: Bump Version
+      uses: remorses/bump-version@js
+      with:
+        version_file: instagram_worker/VERSION
+        prefix: instagram_worker
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+
