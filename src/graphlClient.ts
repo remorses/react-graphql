@@ -1,6 +1,6 @@
 // import GraphQLClient from "apollo-boost"
 import * as jwt from "jsonwebtoken"
-import { LOCAL_STORAGE_TOKEN_KEY, GRAPHQL_ENDPOINT } from "./constants"
+import { LOCAL_STORAGE_TOKEN_KEY, GRAPHQL_ENDPOINT, GRAPHQL_TESTING_ENDPOINT, GRAPHQL_MOCKING_ENDPOINT } from "./constants"
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
@@ -8,8 +8,8 @@ import { onError } from 'apollo-link-error';
 import { ApolloLink } from 'apollo-link';
 
 const uri = process.env.REACT_APP_TESTING
-    ? "http://localhost:9000/graphql"
-    : process.env.NODE_ENV == 'production' ? GRAPHQL_ENDPOINT : "http://localhost:8090/graphql"
+    ? GRAPHQL_MOCKING_ENDPOINT
+    : process.env.NODE_ENV == 'production' ? GRAPHQL_ENDPOINT : GRAPHQL_TESTING_ENDPOINT
 
 const httpLink = new HttpLink({ uri })
 
