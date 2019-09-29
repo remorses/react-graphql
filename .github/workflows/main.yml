@@ -2,15 +2,14 @@ on: push
 name: Docker
 jobs:
   all:
-    name: Node Code Formatter
+    name: Everything
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-node@master
       with:
         node-version: '10'
-    - run: npm ci
-    - run: npm build
+    # - run: npm ci
     - uses: azure/container-actions/docker-login@master
       with:
         # login-server: contoso.azurecr.io
@@ -19,8 +18,8 @@ jobs:
     - name: Publish Image
       run: |
         set -x
-        docker build . -t xmorse/instabotnet-frontend:latest
-        docker push xmorse/instabotnet-frontend:latest
+        docker build . -t xmorse/example:latest
+        docker push xmorse/example:latest
     - name: Bump Version
       uses: remorses/bump-version@js
       with:

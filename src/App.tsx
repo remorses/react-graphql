@@ -1,6 +1,6 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ApolloProvider } from 'react-apollo'
 import styled, { ThemeProvider } from 'styled-components'
 import { theme } from './constants'
