@@ -9,7 +9,7 @@ import { ApolloLink } from 'apollo-link';
 
 const uri = process.env.REACT_APP_TESTING
     ? GRAPHQL_MOCKING_ENDPOINT
-    : process.env.NODE_ENV == 'production' ? GRAPHQL_ENDPOINT : GRAPHQL_TESTING_ENDPOINT
+    : process.env.NODE_ENV === 'production' ? GRAPHQL_ENDPOINT : GRAPHQL_TESTING_ENDPOINT
 
 const httpLink = new HttpLink({ uri })
 
@@ -31,7 +31,7 @@ const authLink = new ApolloLink((operation, forward) => {
 })
 
 const errorAlerter = onError((error) => {
-    let errors = error.graphQLErrors.map(({ message }) => message)
+    const errors = error.graphQLErrors.map(({ message }) => message)
     alert("graphql error:\n" + JSON.stringify(errors, null, "    "))
 })
 
