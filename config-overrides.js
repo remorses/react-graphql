@@ -1,10 +1,11 @@
 const rewireReactHotLoader = require('react-app-rewire-hot-loader')
 const path = require('path')
-const { override, useEslintRc, fixBabelImports } = require('customize-cra')
+const { override, useEslintRc, fixBabelImports, disable } = require('customize-cra')
 
 
 module.exports = override(
-    useEslintRc(path.resolve(__dirname, '.eslintrc')),
+    // useEslintRc(path.resolve(__dirname, '.eslintrc')),
+    disableEsLint(),
     fixBabelImports('import', {
         libraryName: 'antd',
         libraryDirectory: 'es',

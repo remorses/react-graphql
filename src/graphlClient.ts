@@ -36,7 +36,7 @@ const errorAlerter = onError((error) => {
 })
 
 export const client = new ApolloClient({
-    link: ApolloLink.from([authLink, httpLink, errorAlerter]), // Chain it with the HttpLink
+    link: ApolloLink.from([authLink, errorAlerter, httpLink, ]), // Chain it with the HttpLink
     cache: new InMemoryCache(),
     defaultOptions: {
         watchQuery: {
