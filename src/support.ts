@@ -1,4 +1,4 @@
-import decodeJwt from 'decode-jwt'
+import decodeJwt from 'jwt-decode'
 import { LOCAL_STORAGE_TOKEN_KEY } from './constants'
 
 export const getUserId = () => {
